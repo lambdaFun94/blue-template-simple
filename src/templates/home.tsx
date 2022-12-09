@@ -93,8 +93,8 @@ export const transformProps: TransformProps<ExternalImageData> = async (
  * NOTE: This currently has no impact on the local dev path. Local dev urls currently
  * take on the form: featureName/entityId
  */
-export const getPath: GetPath<ExternalImageData> = () => {
-  return `index.html`;
+export const getPath: GetPath<ExternalImageData> = ({document}) => {
+  return document.slug
 };
 
 type ExternalImageRenderData = TemplateRenderProps & {
