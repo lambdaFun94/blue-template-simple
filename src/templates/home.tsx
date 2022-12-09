@@ -17,15 +17,48 @@ import {
 import PageLayout from "../components/page-layout";
 import Card from "../components/card";
 import { ExternalImage } from "../types/ExternalImage";
-import Favicon from "../public/yext-favicon.ico";
+import { CallToAction } from '../components/CallToAction'
+import { Faqs } from '../components/Faqs'
+import { Footer } from '../components/Footer'
+import { Header } from '../components/Header'
+import { Hero } from '../components/Hero'
+import { Pricing } from '../components/Pricing'
+import { PrimaryFeatures } from '../components/PrimaryFeatures'
+import { SecondaryFeatures } from '../components/SecondaryFeatures'
+import { Testimonials } from '../components/Testimonials'
 
 /**
  * Not required depending on your use case.
  */
 export const config: TemplateConfig = {
-  // The name of the feature. If not set the name of this file will be used (without extension).
-  // Use this when you need to override the feature name.
-  name: "turtlehead-tacos",
+  stream: {
+    $id: "my-stream-id-1",
+    // Specifies the exact data that each generated document will contain. This data is passed in
+    // directly as props to the default exported function.
+    fields: [
+      "id",
+      "uid",
+      "meta",
+      "name",
+      "address",
+      "mainPhone",
+      "logo",
+      "description",
+      "hours",
+      "slug",
+      "geocodedCoordinate",
+      "services",
+    ],
+    // Defines the scope of entities that qualify for this stream.
+    filter: {
+      entityTypes: ["location"],
+    },
+    // The entity language profiles that documents will be generated for.
+    localization: {
+      locales: ["en"],
+      primary: false,
+    },
+  },
 };
 
 /**
@@ -81,27 +114,7 @@ type ExternalImageRenderData = TemplateRenderProps & {
   document,
 }): HeadConfig => {
   return {
-    title: "Static Page Example",
-    charset: "UTF-8",
-    viewport: "width=device-width, initial-scale=1",
-    tags: [
-      {
-        type: "meta",
-        attributes: {
-          name: "description",
-          content: "Static page example meta description.",
-        },
-      },
-      {
-        type: "link",
-        attributes: {
-          rel: 'icon',
-          type: 'image/x-icon',
-          href: Favicon
-        },
       }
-    ],
-  };
 };
 
 
@@ -116,48 +129,28 @@ const Static: Template<ExternalImageRenderData> = ({
   externalImage,
 }) => {
   const { _site } = document;
+  const {description, logo} = document;
+  console.log(logo)
 
   return (
     <>
-      <PageLayout _site={_site}>
-        <div className="centered-container">
-          <div className="bg-red-900 text-5xl font-bold text-white p-10 flex items-center justify-center flex-col gap-x-14 gap-y-10 md:flex-row">
-            <h1>Welcome to Turtlehead Tacos</h1>
-          </div>
-          <div className="space-y-5">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-            <p>
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-              accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-              quae ab illo inventore veritatis et quasi architecto beatae vitae
-              dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-              aspernatur aut odit aut fugit, sed quia consequuntur magni dolores
-              eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam
-              est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
-              velit, sed quia non numquam eius modi tempora incidunt ut labore
-              et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima
-              veniam, quis nostrum exercitationem ullam corporis suscipit
-              laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem
-              vel eum iure reprehenderit qui in ea voluptate velit esse quam
-              nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo
-              voluptas nulla pariatur?
-            </p>
-            <div>
-              <Card {...externalImage} />
-            </div>
-          </div>
-        </div>
-      </PageLayout>
+      <Header src={logo} />
+      <main>
+        <Hero description={description} /> 
+        <PrimaryFeatures />
+      </main>
+      <Footer />
     </>
   );
 };
 
 export default Static;
+
+/*
+        <SecondaryFeatures />
+        <CallToAction />
+        <Testimonials />
+        <Pricing />
+        <Faqs />
+
+*/
