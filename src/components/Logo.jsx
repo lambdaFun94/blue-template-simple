@@ -1,8 +1,9 @@
-import { Image } from "@yext/pages/components"
-
 export function Logo({src}) { 
   return (
-          <div>Logo</div>
-
+          <img
+              src={src}
+              width="50"
+              height="50"
+            ></img>
   )
 }

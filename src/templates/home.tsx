@@ -36,6 +36,7 @@ export const config: TemplateConfig = {
     // Specifies the exact data that each generated document will contain. This data is passed in
     // directly as props to the default exported function.
     fields: [
+      "c_tagLine",
       "id",
       "uid",
       "meta",
@@ -129,14 +130,14 @@ const Static: Template<ExternalImageRenderData> = ({
   externalImage,
 }) => {
   const { _site } = document;
-  const {description, logo} = document;
+  const {description, logo, c_tagLine, name} = document;
   console.log(logo)
 
   return (
     <>
-      <Header src={logo} />
+      <Header src={logo.image.url} />
       <main>
-        <Hero description={description} /> 
+        <Hero name={name} tagLine={c_tagLine} description={description} /> 
         <PrimaryFeatures />
       </main>
       <Footer />
