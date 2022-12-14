@@ -11,7 +11,7 @@ import logoTransistor from '../images/logos/transistor.svg'
 import logoTuple from '../images/logos/tuple.svg'
 
 export function Hero({ tagLine, description, name}) {
-        const [word, word1, ...words ] = tagLine.split(' ')
+        const [word, word1, ...words ] = tagLine ? tagLine.split(' ') : ["word", "word1", "word2"] 
         console.log(words)
   return (
     <Container className="pt-20 pb-16 text-center lg:pt-32">
