@@ -48,7 +48,6 @@ export function Hero({ tagLine, description, name}) {
       </div>
       <div className="mt-36 lg:mt-44">
         <p className="font-display text-base text-slate-900">
-          Trusted by these six companies so far
         </p>
         <ul
           role="list"

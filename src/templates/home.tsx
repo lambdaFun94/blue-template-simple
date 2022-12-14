@@ -14,9 +14,10 @@ import {
   TemplateProps,
   TemplateRenderProps,
 } from "@yext/pages";
-import PageLayout from "../components/page-layout";
-import Card from "../components/card";
 import { ExternalImage } from "../types/ExternalImage";
+import Details from "../components/details";
+import StaticMap from "../components/static-map";
+import Favicon from "../public/yext-favicon.ico";
 import { CallToAction } from '../components/CallToAction'
 import { Faqs } from '../components/Faqs'
 import { Footer } from '../components/Footer'
@@ -130,7 +131,7 @@ const Static: Template<ExternalImageRenderData> = ({
   externalImage,
 }) => {
   const { _site } = document;
-  const {description, logo, c_tagLine, name} = document;
+  const {description, logo, c_tagLine, name, address, geocodedCoordinate} = document;
   console.log(logo)
 
   return (
@@ -138,6 +139,7 @@ const Static: Template<ExternalImageRenderData> = ({
       <Header src={logo.image.url} />
       <main>
         <Hero name={name} tagLine={c_tagLine} description={description} /> 
+        <Pricing geocodedCoordinate={geocodedCoordinate} address={address} name={name}></Pricing>
         <PrimaryFeatures />
       </main>
       <Footer />
