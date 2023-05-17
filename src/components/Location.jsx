@@ -1,9 +1,9 @@
 import clsx from 'clsx'
 
-import { Button } from '../components/Button'
+import { Button } from './Button'
 import { Details } from './details'
 import { StaticMap } from './static-map'
-import { Container } from '../components/Container'
+import { Container } from './Container'
 
 function SwirlyDoodle({ className }) {
   return (
@@ -95,7 +95,7 @@ function Plan({ name, price, description, href, features, featured = false }) {
   )
 }
 
-export function Pricing({ geocodedCoordinate, address, name }) {
+export function Location({ geocodedCoordinate, address, name }) {
   console.log(geocodedCoordinate)
   return (
     <section

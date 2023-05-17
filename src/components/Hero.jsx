@@ -1,6 +1,3 @@
-// import { Image } from "@yext/pages/components"
-
-
 import { Button } from '../components/Button'
 import { Container } from '../components/Container'
 import logoLaravel from '../images/logos/laravel.svg'
@@ -10,13 +7,12 @@ import logoStaticKit from '../images/logos/statickit.svg'
 import logoTransistor from '../images/logos/transistor.svg'
 import logoTuple from '../images/logos/tuple.svg'
 
-export function Hero({ tagLine, description, name}) {
-        const [word, word1, ...words ] = tagLine ? tagLine.split(' ') : ["word", "word1", "word2"] 
-        console.log(words)
+export function Hero({ tagLine, description, name }) {
+  const [word, word1, ...words] = tagLine ? tagLine.split(' ') : ["word", "word1", "word2"]
   return (
     <Container className="pt-20 pb-16 text-center lg:pt-32">
       <h1 className="mx-auto max-w-4xl font-display text-5xl font-medium tracking-tight text-slate-900 sm:text-7xl">
-          {word}{' '}
+        {word}{' '}
         <span className="relative whitespace-nowrap text-blue-600">
           <svg
             aria-hidden="true"
@@ -28,9 +24,9 @@ export function Hero({ tagLine, description, name}) {
           </svg>
           <span className="relative">{word1}</span>
         </span>{' '}
-          {words.join(' ')}
+        {words.join(' ')}
       </h1>
-      <p className="mx-auto mt-6 max-w-2xl text-lg tracking-tight text-slate-700">{name}</p>
+      <p className="mx-auto mt-6 max-w-2xl text-lg tracking-tight text-slate-700">{description}</p>
       <div className="mt-10 flex justify-center gap-x-6">
         <Button href="/register">Get 6 months free</Button>
         <Button
@@ -82,4 +78,3 @@ export function Hero({ tagLine, description, name}) {
     </Container>
   )
 }
-// <Image src={company.logo} alt={company.name} unoptimized />
