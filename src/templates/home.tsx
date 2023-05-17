@@ -15,18 +15,10 @@ import {
   TemplateRenderProps,
 } from "@yext/pages";
 import { ExternalImage } from "../types/ExternalImage";
-import Details from "../components/details";
-import StaticMap from "../components/static-map";
-import Favicon from "../public/yext-favicon.ico";
-import { CallToAction } from '../components/CallToAction'
-import { Faqs } from '../components/Faqs'
 import { Footer } from '../components/Footer'
 import { Header } from '../components/Header'
 import { Hero } from '../components/Hero'
 import { Pricing } from '../components/Pricing'
-import { PrimaryFeatures } from '../components/PrimaryFeatures'
-import { SecondaryFeatures } from '../components/SecondaryFeatures'
-import { Testimonials } from '../components/Testimonials'
 
 /**
  * Not required depending on your use case.
@@ -37,7 +29,6 @@ export const config: TemplateConfig = {
     // Specifies the exact data that each generated document will contain. This data is passed in
     // directly as props to the default exported function.
     fields: [
-      "c_tagLine",
       "id",
       "uid",
       "meta",
@@ -95,8 +86,8 @@ export const transformProps: TransformProps<ExternalImageData> = async (
  * NOTE: This currently has no impact on the local dev path. Local dev urls currently
  * take on the form: featureName/entityId
  */
-export const getPath: GetPath<ExternalImageData> = ({document}) => {
-  return document.slug
+export const getPath: GetPath<ExternalImageData> = ({ document }) => {
+  return document.slug ? document.slug : document.id;
 };
 
 type ExternalImageRenderData = TemplateRenderProps & {
@@ -110,13 +101,9 @@ type ExternalImageRenderData = TemplateRenderProps & {
  * will be used to generate the inner contents of the HTML document's <head> tag.
  * This can include the title, meta tags, script tags, etc.
  */
- export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
-  relativePrefixToRoot,
-  path,
-  document,
-}): HeadConfig => {
+export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = (): HeadConfig => {
   return {
-      }
+  }
 };
 
 
@@ -125,22 +112,17 @@ type ExternalImageRenderData = TemplateRenderProps & {
  * The props passed in here are the direct result from `getStaticProps`.
  */
 const Static: Template<ExternalImageRenderData> = ({
-  relativePrefixToRoot,
-  path,
   document,
-  externalImage,
 }) => {
-  const { _site } = document;
-  const {description, logo, c_tagLine, name, address, geocodedCoordinate} = document;
+  const { description, logo, name, address, geocodedCoordinate } = document;
   console.log(logo)
 
   return (
     <>
-      <Header src={logo.image.url} />
+      <Header />
       <main>
-        <Hero name={name} tagLine={c_tagLine} description={description} /> 
+        <Hero tagLine={name} description={description} />
         <Pricing geocodedCoordinate={geocodedCoordinate} address={address} name={name}></Pricing>
-        <PrimaryFeatures />
       </main>
       <Footer />
     </>

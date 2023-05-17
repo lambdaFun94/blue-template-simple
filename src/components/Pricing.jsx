@@ -95,7 +95,8 @@ function Plan({ name, price, description, href, features, featured = false }) {
   )
 }
 
-export function Pricing({geocodedCoordinate, address, name}) {
+export function Pricing({ geocodedCoordinate, address, name }) {
+  console.log(geocodedCoordinate)
   return (
     <section
       id="pricing"
@@ -111,24 +112,23 @@ export function Pricing({geocodedCoordinate, address, name}) {
             </span>{' '}
           </h2>
           <p className="mt-4 text-lg text-slate-400">
-          At {name}, we're here to serve, so please reach out
+            At {name}, we're here to serve, so please reach out
           </p>
         </div>
         <div className="-mx-4 mt-16 grid max-w-2xl grid-cols-1 gap-y-10 sm:mx-auto lg:-mx-8 lg:max-w-none lg:grid-cols-2 xl:mx-0 xl:gap-x-8">
-              <div className="rounded-3xl bg-gray-100 p-2">
-                <Details address={address}></Details>
-              </div>
-              {geocodedCoordinate && (
-                <StaticMap
-                  latitude={geocodedCoordinate.latitude}
-                  longitude={geocodedCoordinate.longitude}
-                ></StaticMap>
-              )}
-            </div>
-          <div>
-          Here is a new Div
-
+          <div className="rounded-3xl bg-gray-100 p-2">
+            <Details address={address}></Details>
           </div>
+          {geocodedCoordinate && (
+            <StaticMap
+              latitude={geocodedCoordinate.latitude}
+              longitude={geocodedCoordinate.longitude}
+            ></StaticMap>
+          )}
+        </div>
+        <div>
+
+        </div>
 
       </Container>
     </section>
