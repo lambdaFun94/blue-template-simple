@@ -34,7 +34,6 @@ export const config: TemplateConfig = {
       "mainPhone",
       "logo",
       "description",
-      "c_generatedDescription",
       "hours",
       "slug",
       "geocodedCoordinate",
@@ -67,14 +66,13 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = (): HeadConfig 
 const Static: Template<TemplateRenderProps> = ({
   document,
 }) => {
-  const { description, logo, name, address, geocodedCoordinate, c_generatedDescription } = document;
-  const desc = description ? description : c_generatedDescription;
+  const { description, logo, name, address, geocodedCoordinate } = document;
 
   return (
     <>
       <Header name={name} />
       <main>
-        <Hero name={name} tagLine={name} description={desc} />
+        <Hero name={name} tagLine={name} description={description} />
         <Location geocodedCoordinate={geocodedCoordinate} address={address} name={name}></Location>
       </main>
       <Footer />
